@@ -1,0 +1,17 @@
+{
+    "name": "qambar/blog",
+    "type": "project",
+    "authors": [
+        {
+            "name": "qambar",
+            "email": "qambar@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/",
+            "App\\Manager\\": "src/model/Manager/",
+            "App\\Entity\\": "src/model/Entity/"
+        }
+    }
+}
