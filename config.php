@@ -13,3 +13,4 @@ define("VIEW_PATH", "view/");
 
 define("CSS_PATH", "public/css/");
 define("JS_PATH", "public/js/");
+define("PHOTO_PATH", "public/images/");

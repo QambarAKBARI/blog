@@ -12,19 +12,20 @@ $sessionUtilisateur = Session::get("utilisateur")->getNom();
 
 ?>
 <div class="container-lg">
-<h1>Nos Utilisateurs :</h1>
-
+<div class="row justify-content-center mt-4">
+        <h1 class="text-center">Nos utilisateurs :</h1>
+    </div>
 <div class="row justify-content-evenly">
 <?php
 foreach($users as $suj){
 
     ?>
     <div class="card bg-light mb-3" style="max-width: 20rem;">
-    <h2 class="card-header"><a class="h2" href="?ctrl=blog&action=blog&id=<?= $suj->getIdUtilisateur() ?>"><?= $suj->getNom()?></a></h2>
-    <h3 class="card-header"><?= $suj->getPrenom()?></h3>
+    <h4 class="card-header"><a class="" href="?ctrl=blog&action=blog&id=<?= $suj->getIdUtilisateur() ?>"><?= $suj->getNom()?></a></h4>
+    <h5 class="card-header"><?= $suj->getPrenom()?></h5>
         <div class="card-body">
-        <h4 class="card-title">Role : <?= $suj->getRole() ?></h4>
-        <p class="card-text"> Email : <?= $suj->getMail()?></p>
+        <h6 class="card-title">Role : <?= $suj->getRole() ?></h6>
+        <h6 class="card-text"> Email : <?= $suj->getMail()?></h6>
         
         </div> 
     </div>

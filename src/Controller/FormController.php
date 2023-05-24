@@ -2,38 +2,15 @@
 namespace App\Controller;
 
 use App\Service\Form;
-use App\Service\Session;
-use App\Manager\UtilisateurManager;
+
+//Import PHPMailer classes into the global namespace
+//These must be at the top of your script, not inside a function
+use PHPMailer\PHPMailer\PHPMailer;
+
+use PHPMailer\PHPMailer\Exception;
 
 class FormController extends AbstractController
 {
-
-
-
-    public function login()
-    {
-        if(Form::isSubmitted()){
-            $credentials = Form::getData("credentials", "text");
-            $password = Form::getData("password", "text");
-
-            if($credentials && $password){
-                $manager = new UtilisateurManager();
-                if(($user = $manager->findByUsernameOrEmail($credentials, $credentials))
-                    && password_verify($password, $user->getPass())){
-                   
-                        Session::set("utilisateur", $user);
-                        $this->addFlash("text-success", "Bienvenue ".$user->getNom());
-                        return $this->redirect("?ctrl=blog&action=index");
-                    
-                }
-                else $this->addFlash("text-danger", "Mauvais identifiants ou mot de passe, réessayez !");
-            }
-            else $this->addFlash("text-danger", "Tous les champs doivent être remplis !");
-        }
-        return $this->render("security/login.php");
-    }
-
-
 
     public function formContact()
     {
@@ -47,28 +24,48 @@ class FormController extends AbstractController
 
           if($nom && $entreprise && $telephone && $message && $email){
 
-            $to = "test@test.com";
-            $subject = "Formulaire de contact".$nom;
-            $messages = "Nom : ".$nom."\nEntreprise : ".$entreprise."\nTéléphone : ".$telephone."\nMessage : ".$message."\nEmail : ".$email;
-            $headers = array(
-                'From' => 'test@example.com',
-                'Reply-To' => 'test@example.com',
-                'X-Mailer' => 'PHP/' . phpversion()
-            );
-            if(mail($to, $subject, $messages, $headers)){
-                $this->addFlash("text-success", "Votre message a bien été envoyé !!");
+            $mail = new PHPMailer(true);
+            try {
+                //Server settings
+                //$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+                $mail->isSMTP();                                            //Send using SMTP
+                $mail->Host       = 'localhost';                     //Set the SMTP server to send through
+                // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                // $mail->Username   = 'user@example.com';                     //SMTP username
+                // $mail->Password   = 'secret';                               //SMTP password
+                // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+                $mail->Port       = 1025;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                $mail->CharSet = 'UTF-8';
+                //Recipients
+                $mail->setFrom('no-reply@site-blog.com', 'Site Blog');
+                $mail->addAddress('admin@site-blog.net', 'Admin');     //Add a recipient
+                // $mail->addAddress('ellen@example.com');               //Name is optional
+                // $mail->addReplyTo('info@example.com', 'Information');
+                // $mail->addCC('cc@example.com');
+                // $mail->addBCC('bcc@example.com');
+            
+                //Attachments
+                // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+                // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+            
+                //Content
+                $mail->isHTML(true);                                  //Set email format to HTML
+                $mail->Subject = 'Formulaire de contact de site Blog';
+                $mail->Body    = 'Nom : ' . $nom . '<br>' . 'Entreprise : ' . $entreprise . '<br>' . 'Téléphone : ' . $telephone . '<br>' . 'Message : ' . $message . '<br>' . 'Email : ' . $email . '<br>';
+                //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+            
+                $mail->send();
+                $this->addFlash("text-success", "Votre message a bien été envoyé, merci de votre confiance " . $nom . " ! Nous vous répondrons dans les plus brefs délais à l'adresse " . $email . " !");
                 return $this->render("form/success.php");
-            }else{
-                $this->addFlash("text-danger", "Problème d'envoi de mail !!");
-                return $this->render("form/success.php");
+            } catch (Exception $e) {
+                $this->addFlash("text-danger", "Le message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}");
             }
-          }else{
-            $this->addFlash("text-danger", "Tous les champs doivent être remplis !");    
-            return $this->render("form/success.php");
           }
         }
     }
-
-
-
 }
+
+
+
+
+    

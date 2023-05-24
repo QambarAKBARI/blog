@@ -49,7 +49,6 @@ abstract class Router
                 Session::invalidate();
                 Session::set("Avis", ["type" => "text-danger", 'msg' => "Invalid CSRF Token !"]);
                 header("Location: index.php");
-                die;
             }
         }
     }

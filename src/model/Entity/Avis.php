@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Manager\BlogManager;
 use App\Manager\UtilisateurManager;
 
 class Avis extends AbstractEntity{
@@ -9,6 +10,7 @@ class Avis extends AbstractEntity{
     private $id_avis;
     private $commentaire;
     private $date_creation;
+    private $status;
     protected $user_id;
     protected $blog_id;
 
@@ -17,8 +19,16 @@ class Avis extends AbstractEntity{
     {
         return $this->blog_id;
     }
+    public function getStatus()
+    {
+        return $this->status;
+    }
 
-
+    public function getCorespondBlog()
+    {
+        $blog = new BlogManager();
+        return $blog->findOneById($this->blog_id)->getTitre();
+    }
     public function getUtilisateur()
     {
         $user = new UtilisateurManager();

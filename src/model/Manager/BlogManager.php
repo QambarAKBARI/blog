@@ -30,15 +30,16 @@ class BlogManager extends AbstractManager {
         );
     }
 
-    public function insertBlog($titre, $contenu, $photo, $user_id, $chapo){
+    public function insertBlog($titre, $contenu, $photo, $user_id, $chapo, $date){
         return $this::executeQuery(
-            "INSERT INTO blog (titre, contenu, photo, user_id, chapo) VALUES (:t, :c, :p, :u, :chapo)",
+            "INSERT INTO blog (titre, contenu, photo, user_id, chapo, date_modif) VALUES (:t, :c, :p, :u, :chapo, :date_modif)",
             [
                 ":t" => $titre,
                 ":c" => $contenu,
                 ":p" => $photo,
                 ":u" => $user_id,
-                ":chapo" => $chapo
+                ":chapo" => $chapo,
+                ":date_modif" => $date
             ]
            
         );

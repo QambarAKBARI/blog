@@ -12,7 +12,7 @@ $sessionUtilisateur = Session::get("utilisateur")->getNom();
 
 ?>
 <div class="container-md">
-<form action="?ctrl=admin&action=updateBlog" method="post">
+<form action="?ctrl=admin&action=updateBlog&id=<?= $blog->getIdBlog() ?>" method="post">
   <fieldset>
     <legend>Modifier un blog</legend>
     <div class="form-group">

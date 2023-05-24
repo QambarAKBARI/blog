@@ -24,7 +24,7 @@ abstract class AbstractController
     protected function redirect($url): void
     {
         header("Location:".$url);
-        die;
+     
     }
 
     protected function addFlash(string $type, string $msg): void

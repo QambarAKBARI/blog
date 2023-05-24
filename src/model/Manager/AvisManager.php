@@ -11,7 +11,7 @@ class AvisManager extends AbstractManager {
     {
         return $this::getResults(
             "App\\Entity\\Avis",
-            "SELECT id, commentaire, date_creation, user_id, blog_id FROM Avis"
+            "SELECT * FROM Avis"
         );
     }
 
@@ -20,7 +20,7 @@ class AvisManager extends AbstractManager {
     {
         return $this::getResults(
             "App\\Entity\\Avis",
-            "SELECT id_avis, commentaire, date_creation, blog_id, user_id FROM Avis
+            "SELECT id_avis, commentaire, date_creation, blog_id, user_id, status FROM Avis
             Where blog_id = :id",
             [
                 ":id" => $id
@@ -68,9 +68,21 @@ class AvisManager extends AbstractManager {
     }
     public function deleteAvis($id){
         return $this::executeQuery(
-            "DELETE FROM Avis WHERE id = :id",
+            "DELETE FROM Avis WHERE id_avis = :id",
             [
                 ':id' => $id 
+            ]
+        );
+    }
+
+    public function approuverAvis($id){
+        return $this::executeQuery(
+            "UPDATE Avis 
+            SET status = :y
+            WHERE id_avis = :id",
+            [
+                ":id" => $id,
+                ":y" => "Approuvé"
             ]
         );
     }

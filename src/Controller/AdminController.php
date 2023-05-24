@@ -17,6 +17,16 @@ class AdminController extends AbstractController
 
        return $this->render("admin/home.php");
     }
+
+    public function commentaires()
+    {
+        if(!$this->isGranted("ROLE_ADMIN")) return false;
+        $avis = new AvisManager();
+        $avis = $avis->findAll();
+       return $this->render("admin/commentaires.php", [
+           "avis" => $avis
+       ]);
+    }
     public function users()
     {
         if(!$this->isGranted("ROLE_ADMIN")) return false;
@@ -36,10 +46,11 @@ class AdminController extends AbstractController
             $contenu = Form::getData("contenu", "text");
             $photo = Form::getData("image", "text");
             $user = Session::get("utilisateur")->getIdUtilisateur();
-            var_dump($user);
-            if($titre && $chapo && $contenu && $photo && $user){
+            $date = new \DateTime();
+            $newDate = $date->format('Y-m-d H:i:s');
+            if($titre && $chapo && $contenu && $photo && $user && $newDate){
                 $manager = new BlogManager();
-                if($manager->insertBlog($titre, $contenu, $photo, $user, $chapo)){
+                if($manager->insertBlog($titre, $contenu, $photo, $user, $chapo, $newDate)){
                     
                     $this->addFlash("text-success", "Le blog est entré en base de données !!");
                     return $this->redirect("?ctrl=blog&action=index");
@@ -95,7 +106,7 @@ class AdminController extends AbstractController
 
         if($manager->deleteBlog($id)){
             $this->addFlash("text-success", "Le blog a été supprimé avec succès !!");
-            return $this->redirect("?ctrl=admin");
+            return $this->redirect("?ctrl=blog&action=index");
         }
         else $this->addFlash("text-danger", "Erreur de BDD !!");
     }
@@ -121,7 +132,6 @@ class AdminController extends AbstractController
     }
 
     public function updateAvis($id){
-        if(!$this->isGranted("ROLE_ADMIN")) return false;
 
         $manager = new AvisManager();
 
@@ -134,7 +144,10 @@ class AdminController extends AbstractController
                     $this->addFlash("text-success", "L'avis a été modifié avec succès !!");
                     return $this->redirect("?ctrl=blog&action=blog&id=$blog_id");
                 }
-                else $this->addFlash("text-danger", "Erreur de BDD !!");
+                else {
+                    $this->addFlash("text-danger", "Erreur de BDD !!");
+                    return $this->redirect("?ctrl=blogs");
+                }
             }
             else $this->addFlash("text-danger", "Veuillez vérifier les données du formulaire");
         }
@@ -144,4 +157,25 @@ class AdminController extends AbstractController
         return $this->redirect("?ctrl=admin");
     }
 
+    public function validateAvis($id){
+        if(!$this->isGranted("ROLE_ADMIN")) return false;
+
+        $manager = new AvisManager();
+
+        if($manager->approuverAvis($id)){
+            $this->addFlash("text-success", "L'avis a été validé avec succès !!");
+            return $this->redirect("?ctrl=admin&action=commentaires");
+        }
+        else $this->addFlash("text-danger", "Erreur de BDD !!");
+    }
+
+    public function deleteAvis($id){
+        $mmanager = new AvisManager();
+        if($mmanager->deleteAvis($id)){
+            $this->addFlash("text-success", "votre Avis a bien été supprimé !!");
+            $this->redirect("?ctrl=blog&action=index");
+        }else{
+            $this->addFlash("text-danger", "Problème de connexion de BDD !!!"); 
+        }
+    }
 }
