@@ -9,6 +9,9 @@ class AvisManager extends AbstractManager
         parent::connect();
     }
 
+    /**
+     * @return [type]
+     */
     public function findAll()
     {
         return $this::getResults(
@@ -17,6 +20,11 @@ class AvisManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function findAllAvisByBlog($id)
     {
         return $this::getResults(
@@ -29,6 +37,11 @@ class AvisManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function findOneById($id)
     {
         return $this::getOneOrNullResult(
@@ -41,6 +54,13 @@ class AvisManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $text
+     * @param mixed $user_id
+     * @param mixed $sujet_id
+     *
+     * @return [type]
+     */
     public function insertAvis($text, $user_id, $sujet_id)
     {
         return $this->executeQuery(
@@ -53,6 +73,14 @@ class AvisManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     * @param mixed $text
+     * @param mixed $user_id
+     * @param mixed $sujet_id
+     *
+     * @return [type]
+     */
     public function updateAvis($id, $text, $user_id, $sujet_id)
     {
         return $this::executeQuery(
@@ -68,6 +96,11 @@ class AvisManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function deleteAvis($id)
     {
         return $this::executeQuery(
@@ -78,6 +111,11 @@ class AvisManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function approuverAvis($id)
     {
         return $this::executeQuery(

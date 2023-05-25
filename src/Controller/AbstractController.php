@@ -22,6 +22,9 @@ abstract class AbstractController
         ];
     }
 
+    /**
+     * @param mixed $url
+     */
     protected function redirect($url): void
     {
         header('Location:'.$url);
@@ -32,11 +35,17 @@ abstract class AbstractController
         Session::set('Avis', ['type' => $type, 'msg' => $msg]);
     }
 
+    /**
+     * @return [type]
+     */
     protected function getUtilisateur()
     {
         return Session::get('utilisateur');
     }
 
+    /**
+     * @param mixed $role
+     */
     protected function isGranted($role): bool
     {
         return Session::get('utilisateur') && Session::get('utilisateur')->getRole() === $role;

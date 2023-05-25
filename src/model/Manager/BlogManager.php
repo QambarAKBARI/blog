@@ -9,6 +9,9 @@ class BlogManager extends AbstractManager
         parent::connect();
     }
 
+    /**
+     * @return [type]
+     */
     public function findAll()
     {
         return $this::getResults(
@@ -17,6 +20,11 @@ class BlogManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function findOneById($id)
     {
         return $this::getOneOrNullResult(
@@ -29,6 +37,16 @@ class BlogManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $titre
+     * @param mixed $contenu
+     * @param mixed $photo
+     * @param mixed $user_id
+     * @param mixed $chapo
+     * @param mixed $date
+     *
+     * @return [type]
+     */
     public function insertBlog($titre, $contenu, $photo, $user_id, $chapo, $date)
     {
         return $this::executeQuery(
@@ -44,6 +62,11 @@ class BlogManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function deleteBlog($id)
     {
         return $this::executeQuery(
@@ -54,6 +77,17 @@ class BlogManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     * @param mixed $titre
+     * @param mixed $chapo
+     * @param mixed $contenu
+     * @param mixed $photo
+     * @param mixed $date
+     * @param mixed $user_id
+     *
+     * @return [type]
+     */
     public function updateBlog($id, $titre, $chapo, $contenu, $photo, $date, $user_id)
     {
         return $this::executeQuery(
@@ -70,6 +104,11 @@ class BlogManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function findAllBlogsByUser($id)
     {
         return $this::getResults(

@@ -34,6 +34,9 @@ abstract class Router
         return false;
     }
 
+    /**
+     * @return [type]
+     */
     public static function generateToken()
     {
         if (!Session::get('csrf_key')) {
@@ -43,6 +46,11 @@ abstract class Router
         return hash_hmac('sha256', SECRET_WORD, Session::get('csrf_key'));
     }
 
+    /**
+     * @param mixed $token
+     *
+     * @return [type]
+     */
     public static function CSRFProtection($token)
     {
         if (Form::isSubmitted()) {

@@ -10,6 +10,9 @@ use App\Service\Session;
 
 class AdminController extends AbstractController
 {
+    /**
+     * @return [type]
+     */
     public function index()
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
@@ -19,6 +22,9 @@ class AdminController extends AbstractController
         return $this->render('admin/home.php');
     }
 
+    /**
+     * @return [type]
+     */
     public function commentaires()
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
@@ -27,11 +33,16 @@ class AdminController extends AbstractController
         $avis = new AvisManager();
         $avis = $avis->findAll();
 
-        return $this->render('admin/commentaires.php', [
+        return $this->render(
+            'admin/commentaires.php', [
             'avis' => $avis,
-        ]);
+            ]
+        );
     }
 
+    /**
+     * @return [type]
+     */
     public function users()
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
@@ -40,13 +51,18 @@ class AdminController extends AbstractController
         $users = new UtilisateurManager();
         $users = $users->findAll();
 
-        return $this->render('admin/users.php', [
+        return $this->render(
+            'admin/users.php', [
             'users' => $users,
-        ]);
+            ]
+        );
 
         return $this->render('admin/home.php');
     }
 
+    /**
+     * @return [type]
+     */
     public function newBlog()
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
@@ -79,6 +95,11 @@ class AdminController extends AbstractController
         return $this->render('admin/newBlog.php');
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function updateBlog($id)
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
@@ -110,11 +131,18 @@ class AdminController extends AbstractController
 
         $blog = $manager->findOneById($id);
 
-        return $this->render('admin/updateBlog.php', [
+        return $this->render(
+            'admin/updateBlog.php', [
             'blog' => $blog,
-        ]);
+            ]
+        );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function deleteBlog($id)
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
@@ -132,6 +160,11 @@ class AdminController extends AbstractController
         }
     }
 
+    /**
+     * @param mixed $blog_id
+     *
+     * @return [type]
+     */
     public function ajouterAvis($blog_id)
     {
         $manger = new AvisManager();
@@ -154,6 +187,11 @@ class AdminController extends AbstractController
         }
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function updateAvis($id)
     {
         $manager = new AvisManager();
@@ -180,6 +218,11 @@ class AdminController extends AbstractController
         return $this->redirect('?ctrl=admin');
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function validateAvis($id)
     {
         if (!$this->isGranted('ROLE_ADMIN')) {
@@ -197,6 +240,11 @@ class AdminController extends AbstractController
         }
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function deleteAvis($id)
     {
         $mmanager = new AvisManager();

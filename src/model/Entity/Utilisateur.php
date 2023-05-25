@@ -11,11 +11,17 @@ class Utilisateur extends AbstractEntity
     private $pass;
     private $role;
 
+    /**
+     * @return [type]
+     */
     public function getNom()
     {
         return $this->nom;
     }
 
+    /**
+     * @return [type]
+     */
     public function getPrenom()
     {
         return $this->prenom;
@@ -53,6 +59,9 @@ class Utilisateur extends AbstractEntity
         return $this->role ?? 'ROLE_USER';
     }
 
+    /**
+     * @return [type]
+     */
     public function __toString()
     {
         return $this->nom.' '.$this->prenom;

@@ -9,6 +9,9 @@ class UtilisateurManager extends AbstractManager
         parent::connect();
     }
 
+    /**
+     * @return [type]
+     */
     public function findAll()
     {
         return $this::getResults(
@@ -17,6 +20,11 @@ class UtilisateurManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function findOneById($id)
     {
         return $this::getOneOrNullResult(
@@ -28,6 +36,12 @@ class UtilisateurManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $nom
+     * @param mixed $email
+     *
+     * @return [type]
+     */
     public function findByUsernameOrEmail($nom, $email)
     {
         return $this::getOneOrNullResult(
@@ -40,6 +54,14 @@ class UtilisateurManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $nom
+     * @param mixed $prenom
+     * @param mixed $email
+     * @param mixed $hash
+     *
+     * @return [type]
+     */
     public function insertUser($nom, $prenom, $email, $hash)
     {
         return $this::executeQuery(
@@ -53,6 +75,11 @@ class UtilisateurManager extends AbstractManager
         );
     }
 
+    /**
+     * @param mixed $id
+     *
+     * @return [type]
+     */
     public function addAdmin($id)
     {
         return $this::executeQuery(

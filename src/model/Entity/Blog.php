@@ -24,11 +24,17 @@ class Blog extends AbstractEntity
         return $user->findOneById($this->user_id)->getNom();
     }
 
+    /**
+     * @return [type]
+     */
     public function getPhoto()
     {
         return $this->photo;
     }
 
+    /**
+     * @return [type]
+     */
     public function getContenu()
     {
         return $this->contenu;
@@ -50,11 +56,17 @@ class Blog extends AbstractEntity
         return $this->id_blog;
     }
 
+    /**
+     * @return [type]
+     */
     public function getChapo()
     {
         return $this->chapo;
     }
 
+    /**
+     * @return [type]
+     */
     public function getDateModif()
     {
         return $this->date_modif;

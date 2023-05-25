@@ -18,7 +18,7 @@
       <label for="exampleInputPassword1" class="form-label mt-4">Image(url)</label>
       <input type="text" class="form-control" id="" name="image" placeholder="url" required>
     </div>
-    <input type="hidden" name="csrf_token" value="<?= $token ?>">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars($token, ENT_QUOTES, 'UTF-8')?>">
     <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
   </fieldset>
 </form>

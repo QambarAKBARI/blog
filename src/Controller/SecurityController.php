@@ -8,11 +8,17 @@ use App\Service\Session;
 
 class SecurityController extends AbstractController
 {
+    /**
+     * @return [type]
+     */
     public function index()
     {
         return $this->render('security/index.php');
     }
 
+    /**
+     * @return [type]
+     */
     public function login()
     {
         if (Form::isSubmitted()) {
@@ -22,7 +28,8 @@ class SecurityController extends AbstractController
             if ($credentials && $password) {
                 $manager = new UtilisateurManager();
                 if (($user = $manager->findByUsernameOrEmail($credentials, $credentials))
-                    && password_verify($password, $user->getPass())) {
+                    && password_verify($password, $user->getPass())
+                ) {
                     Session::set('utilisateur', $user);
                     $this->addFlash('text-success', 'Bienvenue '.$user->getNom());
 
@@ -38,6 +45,9 @@ class SecurityController extends AbstractController
         return $this->render('security/login.php');
     }
 
+    /**
+     * @return [type]
+     */
     public function logout()
     {
         if (!$this->isGranted('ROLE_USER') && !$this->isGranted('ROLE_ADMIN') && !$this->isGranted('SUPER_ADMIN')) {
@@ -50,6 +60,9 @@ class SecurityController extends AbstractController
         return $this->redirect('?ctrl=security&action=login');
     }
 
+    /**
+     * @return [type]
+     */
     public function register()
     {
         if (Form::isSubmitted()) {

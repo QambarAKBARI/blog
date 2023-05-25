@@ -25,6 +25,12 @@ abstract class AbstractManager
         );
     }
 
+    /**
+     * @param mixed $sql
+     * @param null  $params
+     *
+     * @return [type]
+     */
     protected static function executeQuery($sql, $params = null)
     {
         $stmt = self::$connexion->prepare($sql);
@@ -33,6 +39,9 @@ abstract class AbstractManager
         return $stmt;
     }
 
+    /**
+     * @return [type]
+     */
     protected static function getLastInsertId()
     {
         return intval(self::$connexion->lastInsertId());
@@ -52,6 +61,13 @@ abstract class AbstractManager
         return $results;
     }
 
+    /**
+     * @param mixed $classname
+     * @param mixed $sql
+     * @param null  $params
+     *
+     * @return [type]
+     */
     protected static function getOneOrNullResult($classname, $sql, $params = null)
     {
         $stmt = self::executeQuery($sql, $params);
