@@ -4,19 +4,12 @@ namespace App\Entity;
 
 class Utilisateur extends AbstractEntity
 {
-
     private $id_utilisateur;
     private $mail;
     private $nom;
     private $prenom;
     private $pass;
     private $role;
-
-
-
-
-
-
 
     public function getNom()
     {
@@ -29,46 +22,39 @@ class Utilisateur extends AbstractEntity
     }
 
     /**
-     * Get the value of mail
-     */ 
+     * Get the value of mail.
+     */
     public function getMail()
     {
         return $this->mail;
     }
 
-
-
-
     /**
-     * Get the value of id
-     */ 
+     * Get the value of id.
+     */
     public function getIdUtilisateur()
     {
         return $this->id_utilisateur;
     }
 
-
-
     /**
-     * Get the value of pass
-     */ 
+     * Get the value of pass.
+     */
     public function getPass()
     {
         return $this->pass;
     }
 
     /**
-     * Get the value of role
-     */ 
+     * Get the value of role.
+     */
     public function getRole()
     {
-        return $this->role ?? "ROLE_USER";
+        return $this->role ?? 'ROLE_USER';
     }
 
     public function __toString()
     {
-        return $this->nom . " " . $this->prenom;
+        return $this->nom.' '.$this->prenom;
     }
-
-
 }

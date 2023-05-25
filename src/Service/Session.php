@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service;
 
 abstract class Session
@@ -6,6 +7,7 @@ abstract class Session
     public static function set($key, $value)
     {
         $_SESSION[$key] = $value;
+
         return $_SESSION[$key];
     }
 
@@ -16,9 +18,10 @@ abstract class Session
 
     public static function get($key)
     {
-        if(isset($_SESSION[$key])){
+        if (isset($_SESSION[$key])) {
             return $_SESSION[$key];
         }
+
         return null;
     }
 
@@ -27,5 +30,4 @@ abstract class Session
         session_destroy();
         session_start();
     }
-
 }

@@ -1,7 +1,8 @@
 <?php
+
 namespace App\Manager;
 
-class UtilisateurManager extends AbstractManager 
+class UtilisateurManager extends AbstractManager
 {
     public function __construct()
     {
@@ -11,18 +12,18 @@ class UtilisateurManager extends AbstractManager
     public function findAll()
     {
         return $this::getResults(
-            "App\\Entity\\Utilisateur",
-            "SELECT * FROM utilisateur"
+            'App\\Entity\\Utilisateur',
+            'SELECT * FROM utilisateur'
         );
     }
 
     public function findOneById($id)
     {
         return $this::getOneOrNullResult(
-            "App\\Entity\\Utilisateur",
-            "SELECT * FROM utilisateur WHERE id_utilisateur = :id",
+            'App\\Entity\\Utilisateur',
+            'SELECT * FROM utilisateur WHERE id_utilisateur = :id',
             [
-                ":id" => $id
+                ':id' => $id,
             ]
         );
     }
@@ -30,11 +31,11 @@ class UtilisateurManager extends AbstractManager
     public function findByUsernameOrEmail($nom, $email)
     {
         return $this::getOneOrNullResult(
-            "App\\Entity\\Utilisateur",
-            "SELECT * FROM utilisateur WHERE mail = :email OR nom = :nom",
+            'App\\Entity\\Utilisateur',
+            'SELECT * FROM utilisateur WHERE mail = :email OR nom = :nom',
             [
-                ":nom" => $nom,
-                ":email"    => $email
+                ':nom' => $nom,
+                ':email' => $email,
             ]
         );
     }
@@ -42,29 +43,26 @@ class UtilisateurManager extends AbstractManager
     public function insertUser($nom, $prenom, $email, $hash)
     {
         return $this::executeQuery(
-            "INSERT INTO utilisateur (nom, prenom, mail, pass) VALUES (:n, :p, :e, :h)",
+            'INSERT INTO utilisateur (nom, prenom, mail, pass) VALUES (:n, :p, :e, :h)',
             [
-                ":n" => $nom,
-                ":p" => $prenom,
-                ":e" => $email,
-                ":h" => $hash
+                ':n' => $nom,
+                ':p' => $prenom,
+                ':e' => $email,
+                ':h' => $hash,
             ]
         );
     }
 
-
-    public function addAdmin($id){
-
+    public function addAdmin($id)
+    {
         return $this::executeQuery(
-            "UPDATE utilisateur 
+            'UPDATE utilisateur 
             SET role = :y
-            WHERE id_utilisateur = :id",
+            WHERE id_utilisateur = :id',
             [
-                ":id" => $id,
-                ":y" => "ROLE_ADMIN",
+                ':id' => $id,
+                ':y' => 'ROLE_ADMIN',
             ]
         );
     }
-
-
 }

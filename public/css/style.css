@@ -1,29 +1,33 @@
 /* hero */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,300);
+
 * {
   margin: 0;
   padding: 0;
 }
-#hamesh{
+
+#hamesh {
   height: 70vh;
 }
-body
-{
-  font-family: 'Open Sans', sans-serif;
-  background-color: #DDE6ED;
- 
+
+body {
+  font-family: "Open Sans", sans-serif;
+  background-color: #dde6ed;
 }
+
 h1 span {
   display: block;
   margin-top: 1em;
   font-size: 40px;
   font-weight: 300;
 }
+
 /* formulaire de contact */
 .get-in-touch {
   max-width: 800px;
   margin: 50px auto;
 }
+
 .get-in-touch .title {
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -37,6 +41,7 @@ h1 span {
   position: relative;
   margin: 32px 0;
 }
+
 .contact-form .input-text {
   display: block;
   width: 100%;
@@ -47,14 +52,17 @@ h1 span {
   line-height: 26px;
   font-weight: 400;
 }
+
 .contact-form .input-text:focus {
   outline: none;
 }
-.contact-form .input-text:focus + .label,
-.contact-form .input-text.not-empty + .label {
+
+.contact-form .input-text:focus+.label,
+.contact-form .input-text.not-empty+.label {
   -webkit-transform: translateY(-24px);
   transform: translateY(-24px);
 }
+
 .contact-form .label {
   position: absolute;
   left: 20px;
@@ -68,6 +76,7 @@ h1 span {
   transition: transform 0.2s ease-in-out;
   transition: transform 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 }
+
 .contact-form .submit-btn {
   display: inline-block;
   background-color: #1f2039;
@@ -80,9 +89,10 @@ h1 span {
   width: 200px;
   cursor: pointer;
 }
+
 /* modal */
 a {
-  text-decoration: none !important;
+  text-decoration: none;
 }
 
 .footer-dark {
@@ -149,7 +159,7 @@ a {
   }
 }
 
-.footer-dark .item.social > a {
+.footer-dark .item.social>a {
   font-size: 20px;
   width: 36px;
   height: 36px;
@@ -163,7 +173,7 @@ a {
   opacity: 0.75;
 }
 
-.footer-dark .item.social > a:hover {
+.footer-dark .item.social>a:hover {
   opacity: 0.9;
 }
 
@@ -173,14 +183,13 @@ a {
   opacity: 0.3;
   font-size: 13px;
   margin-bottom: 0;
-  
 }
-
 
 /* hero */
 section {
   padding: 80px;
 }
+
 #hero {
   display: flex;
   flex-direction: row;
@@ -197,18 +206,22 @@ h1 {
   font-size: 3em;
   padding-bottom: 25px;
 }
+
 p {
   color: white;
   font-size: 1.2em;
   margin-bottom: 70px;
 }
+
 a {
   text-decoration: none;
   color: white;
 }
+
 a:hover {
   text-decoration: none;
 }
+
 .cta {
   color: white;
   background: linear-gradient(#8e86b5, #acaeed);
@@ -216,10 +229,12 @@ a:hover {
   font-size: 1.1em;
   border-radius: 50px;
 }
+
 .cta:hover {
   text-decoration: none;
   background: linear-gradient(#696484, #8788ba);
 }
+
 @media screen and (max-width: 996px) {
   #hero {
     flex-direction: column;
@@ -229,25 +244,30 @@ a:hover {
     padding: 10px;
     width: 85%;
   }
+
   #hero img {
     order: 1;
     margin-bottom: 40px;
   }
+
   #hero div {
     order: 2;
     height: auto;
     margin-bottom: 15px;
     margin-right: 0;
   }
+
   .home p {
     padding: 0 50px 0 50px;
     margin-bottom: 50px;
   }
 }
+
 @media screen and (max-width: 470px) {
   #hero h1 {
     font-size: 2em;
   }
+
   #hero p {
     font-size: 1.2em;
   }

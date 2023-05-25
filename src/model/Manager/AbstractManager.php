@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Manager;
 
 abstract class AbstractManager
@@ -6,19 +7,20 @@ abstract class AbstractManager
     private static $connexion;
 
     /**
-     * Retourne une instance de PDO, représentant la connexion à la base de données
+     * Retourne une instance de PDO, représentant la connexion à la base de données.
+     *
      * @return \PDO un objet instance de PDO, connecté à la base de données
      */
     protected static function connect()
     {
         self::$connexion = new \PDO(
-            "mysql:dbname=".DB_NAME.";host=".DB_HOST,
+            'mysql:dbname='.DB_NAME.';host='.DB_HOST,
             DB_USER,
             DB_PASS,
             [
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
-                \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_EXCEPTION,
-                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8'
+                \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES UTF8',
             ]
         );
     }
@@ -27,6 +29,7 @@ abstract class AbstractManager
     {
         $stmt = self::$connexion->prepare($sql);
         $stmt->execute($params);
+
         return $stmt;
     }
 
@@ -36,15 +39,16 @@ abstract class AbstractManager
     }
 
     /**
-     * Récupère sous forme de $classname les résultats de $sql executée avec $params
+     * Récupère sous forme de $classname les résultats de $sql executée avec $params.
      */
     protected static function getResults($classname, $sql, $params = null)
     {
         $stmt = self::executeQuery($sql, $params);
         $results = [];
-        foreach($stmt->fetchAll(\PDO::FETCH_CLASS, $classname) as $obj){
+        foreach ($stmt->fetchAll(\PDO::FETCH_CLASS, $classname) as $obj) {
             $results[] = $obj;
         }
+
         return $results;
     }
 
@@ -52,9 +56,10 @@ abstract class AbstractManager
     {
         $stmt = self::executeQuery($sql, $params);
         $stmt->setFetchMode(\PDO::FETCH_CLASS, $classname);
-        if($obj = $stmt->fetch()){
+        if ($obj = $stmt->fetch()) {
             return $obj;
         }
+
         return null;
     }
 }
