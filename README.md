@@ -6,26 +6,26 @@ Ce projet est un site de blog développé en PHP avec un framework personnalisé
 
 ## Installation
 
-1. Clonez ce référentiel sur votre machine locale.
-2. Assurez-vous que vous disposez de PHP installé sur votre machine.
-3. Exécutez la commande composer install pour installer les dépendances, notamment PHPMailer.
-4. Configurez les paramètres de connexion à la base de données dans le fichier de configuration approprié..
+1.  Clonez ce référentiel sur votre machine locale.
+2.  Assurez-vous que vous disposez de PHP installé sur votre machine.
+3.  Exécutez la commande composer install pour installer les dépendances, notamment PHPMailer.
+4.  Configurez les paramètres de connexion à la base de données dans le fichier de configuration approprié..
 
 ## Utilisation
 
-1. Accédez au répertoire du projet dans votre terminal.
-2. Exécutez la commande php -S localhost:8000 pour démarrer le serveur de développement.
-3. Ouvrez votre navigateur et accédez à http://localhost:8000 pour accéder au site.
+1.  Accédez au répertoire du projet dans votre terminal.
+2.  Exécutez la commande php -S localhost:8000 pour démarrer le serveur de développement.
+3.  Ouvrez votre navigateur et accédez à http://localhost:8000 pour accéder au site.
 
 ## Fonctionnalités
 
-- Gestion des articles : création, édition et suppression d'articles.
-- Commentaires : possibilité pour les utilisateurs de laisser des commentaires sur les articles.
-- Système d'authentification : les administrateurs peuvent se connecter pour gérer le site et les articles.
+-  Gestion des articles : création, édition et suppression d'articles.
+-  Commentaires : possibilité pour les utilisateurs de laisser des commentaires sur les articles.
+-  Système d'authentification : les administrateurs peuvent se connecter pour gérer le site et les articles.
 
 ## Dépendances
 
-- PHPMailer : une dépendance utilisée pour envoyer des e-mails depuis l'application. Pour plus d'informations, consultez PHPMailer.
+-  PHPMailer : une dépendance utilisée pour envoyer des e-mails depuis l'application. Pour plus d'informations, consultez PHPMailer.
 
 ## Licence
 
