@@ -6,10 +6,15 @@ use App\Manager\UtilisateurManager;
 use App\Service\Form;
 use App\Service\Session;
 
+/**
+ * Description SecurityController
+ */
 class SecurityController extends AbstractController
 {
     /**
-     * @return [type]
+     * Index
+     * 
+     * @return [array]
      */
     public function index()
     {
@@ -17,6 +22,8 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Login
+     * 
      * @return [type]
      */
     public function login()
@@ -46,6 +53,8 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Logout
+     * 
      * @return [type]
      */
     public function logout()
@@ -61,6 +70,8 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Register
+     * 
      * @return [type]
      */
     public function register()

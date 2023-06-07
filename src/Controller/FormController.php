@@ -8,9 +8,18 @@ use App\Service\Form;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
+/**
+ * FormController
+ * 
+ * @category Controller
+ * @package  None
+ * @link     None
+ */
 class FormController extends AbstractController
 {
     /**
+     * Traitement formulaire de contact
+     * 
      * @return [type]
      */
     public function formContact()
@@ -26,39 +35,39 @@ class FormController extends AbstractController
                 $mail = new PHPMailer(true);
                 try {
                     // Server settings
-                    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-                    $mail->isSMTP();                                            // Send using SMTP
-                    $mail->Host = 'localhost';                     // Set the SMTP server to send through
-                    // $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                    // $mail->Username   = 'user@example.com';                     //SMTP username
-                    // $mail->Password   = 'secret';                               //SMTP password
-                    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-                    $mail->Port = 1025;                                    // TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+                    $mail->isSMTP();                                         
+                    $mail->Host = 'localhost';                
+                    // $mail->SMTPAuth   = true;                          
+                    // $mail->Username   = 'user@example.com';                    
+                    // $mail->Password   = 'secret';                             
+                    // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;          
+                    $mail->Port = 1025;                                   
                     $mail->CharSet = 'UTF-8';
                     // Recipients
                     $mail->setFrom('no-reply@site-blog.com', 'Site Blog');
-                    $mail->addAddress('admin@site-blog.net', 'Admin');     // Add a recipient
-                    // $mail->addAddress('ellen@example.com');               //Name is optional
+                    $mail->addAddress('admin@site-blog.net', 'Admin');   
+                    // $mail->addAddress('ellen@example.com');               
                     // $mail->addReplyTo('info@example.com', 'Information');
                     // $mail->addCC('cc@example.com');
                     // $mail->addBCC('bcc@example.com');
 
                     // Attachments
-                    // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+                    // $mail->addAttachment('/var/tmp/file.tar.gz');      
+                    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    
 
                     // Content
-                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->isHTML(true);                          
                     $mail->Subject = 'Formulaire de contact de site Blog';
                     $mail->Body = 'Nom : '.$nom.'<br>Entreprise : '.$entreprise.'<br>Téléphone : '.$telephone.'<br>Message : '.$message.'<br>Email : '.$email.'<br>';
-                    // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+                 
 
                     $mail->send();
                     $this->addFlash('text-success', 'Votre message a bien été envoyé, merci de votre confiance '.$nom." ! Nous vous répondrons dans les plus brefs délais à l'adresse ".$email.' !');
 
                     return $this->render('form/success.php');
                 } catch (Exception $e) {
-                    $this->addFlash('text-danger', "Le message n'a pas pu être envoyé. Mailer Error: {$mail->ErrorInfo}");
+                    $this->addFlash('text-danger', "Le message  envoyé. {$mail->ErrorInfo}");
                 }
             }
         }

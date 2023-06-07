@@ -23,6 +23,8 @@ abstract class AbstractController
     }
 
     /**
+     * Redirige vers une URL.
+     * 
      * @param mixed $url
      */
     protected function redirect($url): void
@@ -30,12 +32,20 @@ abstract class AbstractController
         header('Location:'.$url);
     }
 
+    /**
+     * @param string $type
+     * @param string $msg
+     * 
+     * @return void
+     */
     protected function addFlash(string $type, string $msg): void
     {
         Session::set('Avis', ['type' => $type, 'msg' => $msg]);
     }
 
     /**
+     * Undocumented function
+     * 
      * @return [type]
      */
     protected function getUtilisateur()
@@ -44,6 +54,7 @@ abstract class AbstractController
     }
 
     /**
+     * 
      * @param mixed $role
      */
     protected function isGranted($role): bool

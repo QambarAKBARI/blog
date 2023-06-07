@@ -5,9 +5,14 @@ namespace App\Controller;
 use App\Manager\AvisManager;
 use App\Manager\BlogManager;
 
+/**
+ * [Description BlogController]
+ */
 class BlogController extends AbstractController
 {
     /**
+     * Index
+     * 
      * @return [type]
      */
     public function index()
@@ -23,8 +28,9 @@ class BlogController extends AbstractController
     }
 
     /**
-     * @param mixed $id
-     *
+     * Blog
+     * 
+     *@param [type] $id [description]
      * @return [type]
      */
     public function blog($id)

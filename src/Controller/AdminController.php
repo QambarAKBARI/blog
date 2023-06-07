@@ -11,18 +11,19 @@ use App\Service\Session;
 class AdminController extends AbstractController
 {
     /**
+     * Index
+     * 
      * @return [type]
      */
     public function index()
     {
-        if (!$this->isGranted('ROLE_ADMIN')) {
-            return false;
-        }
-
+        if (!$this->isGranted('ROLE_ADMIN')) return false;
         return $this->render('admin/home.php');
     }
 
     /**
+     * Commentaires
+     * 
      * @return [type]
      */
     public function commentaires()
@@ -34,13 +35,16 @@ class AdminController extends AbstractController
         $avis = $avis->findAll();
 
         return $this->render(
-            'admin/commentaires.php', [
-            'avis' => $avis,
+            'admin/commentaires.php',
+            [
+                'avis' => $avis,
             ]
         );
     }
 
     /**
+     * Users
+     * 
      * @return [type]
      */
     public function users()
@@ -52,8 +56,9 @@ class AdminController extends AbstractController
         $users = $users->findAll();
 
         return $this->render(
-            'admin/users.php', [
-            'users' => $users,
+            'admin/users.php',
+            [
+                'users' => $users,
             ]
         );
 
@@ -61,6 +66,8 @@ class AdminController extends AbstractController
     }
 
     /**
+     * NewBlog
+     * 
      * @return [type]
      */
     public function newBlog()
@@ -132,8 +139,9 @@ class AdminController extends AbstractController
         $blog = $manager->findOneById($id);
 
         return $this->render(
-            'admin/updateBlog.php', [
-            'blog' => $blog,
+            'admin/updateBlog.php',
+            [
+                'blog' => $blog,
             ]
         );
     }

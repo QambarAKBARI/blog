@@ -55,6 +55,7 @@ abstract class Router
     {
         if (Form::isSubmitted()) {
             $form_token = Form::getData('csrf_token', 'text');
+        
             if (!$form_token || !hash_equals($token, $form_token)) {
                 Session::invalidate();
                 Session::set('Avis', ['type' => 'text-danger', 'msg' => 'Invalid CSRF Token !']);
